@@ -206,7 +206,7 @@ router.put("/update-student", async (req, res) => {
   }
 });
 
-router.delete("/delete-student", async (req, res) => {
+router.post("/delete-student", async (req, res) => {
   const { std_admission_number } = req.body;
 
   if (!std_admission_number)

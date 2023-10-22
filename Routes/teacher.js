@@ -214,7 +214,7 @@ router.put("/update-teacher", async (req, res) => {
   }
 });
 
-router.delete("/delete-teacher", async (req, res) => {
+router.post("/delete-teacher", async (req, res) => {
   const { tea_cnic } = req.body;
 
   if (!tea_cnic) return res.send("Teacher CNIC required");
