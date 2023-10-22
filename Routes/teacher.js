@@ -12,6 +12,7 @@ router.post("/add-teacher", async (req, res) => {
     tea_gender,
     tea_designation,
     tea_doj,
+    tea_email,
   } = req.body;
   if (
     !tea_cnic ||
@@ -22,7 +23,8 @@ router.post("/add-teacher", async (req, res) => {
     !tea_salary ||
     !tea_gender ||
     !tea_designation ||
-    !tea_doj
+    !tea_doj ||
+    !tea_email
   )
     return res.status(400).json({
       error: "Please enter all the details",
@@ -35,6 +37,12 @@ router.post("/add-teacher", async (req, res) => {
   if (tea_phone_no.length !== 11)
     return res.status(400).json({
       error: "Please enter correct phone number",
+    });
+  const emailReg =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  if (!emailReg.test(tea_email))
+    return res.status(400).json({
+      error: "please enter correct email",
     });
 
   try {
@@ -85,6 +93,7 @@ router.post("/add-teacher", async (req, res) => {
             tea_gender,
             tea_designation,
             tea_doj,
+            tea_email,
           },
         }),
       }
@@ -107,6 +116,7 @@ router.put("/update-teacher", async (req, res) => {
     tea_gender,
     tea_designation,
     tea_doj,
+    tea_email,
   } = req.body;
 
   if (
@@ -118,7 +128,8 @@ router.put("/update-teacher", async (req, res) => {
     !tea_salary ||
     !tea_gender ||
     !tea_designation ||
-    !tea_doj
+    !tea_doj ||
+    !tea_email
   )
     return res.send("All fields are required");
   if (tea_name.length <= 3 || tea_name.length >= 15)
@@ -128,6 +139,12 @@ router.put("/update-teacher", async (req, res) => {
   if (tea_phone_no.length !== 11)
     return res.status(400).json({
       error: "Please enter correct phone number",
+    });
+  const emailReg =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  if (!emailReg.test(tea_email))
+    return res.status(400).json({
+      error: "please enter correct email",
     });
   try {
     const response = await fetch(
@@ -180,6 +197,7 @@ router.put("/update-teacher", async (req, res) => {
               tea_gender,
               tea_designation,
               tea_doj,
+              tea_email,
             },
           },
         }),

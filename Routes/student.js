@@ -103,7 +103,7 @@ router.post("/add-student", async (req, res) => {
   }
 });
 
-router.put("/update_student", async (req, res) => {
+router.put("/update-student", async (req, res) => {
   const {
     std_name,
     std_class,
@@ -332,7 +332,7 @@ router.post("/delete-students", async (req, res) => {
   }
 });
 
-router.post("/get_student", async (req, res) => {
+router.post("/get-student", async (req, res) => {
   const { std_admission_number } = req.body;
 
   if (!std_admission_number)
@@ -368,7 +368,7 @@ router.post("/get_student", async (req, res) => {
   }
 });
 
-router.get("/get_students", async (req, res) => {
+router.get("/get-students", async (req, res) => {
   try {
     const response = await fetch(
       "https://ap-south-1.aws.data.mongodb-api.com/app/data-bcudq/endpoint/data/v1/action/find",
